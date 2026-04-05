@@ -177,24 +177,61 @@ def metric_card(label, value, sub="", cls="neutral"):
 
 # ── LIVE PRICE PANEL ───────────────────────────────────────────────────────────
 def render_live_price(df, pair):
-    if df.empty:
-        st.warning("No ticker data available.")
+    row = None
+    if not df.empty and pair in df["market"].values:
+        row = df[df["market"] == pair].iloc[0]
+    else:
+        from api import get_ticker
+        fresh_df, _ = get_ticker()
+        if not fresh_df.empty and pair in fresh_df["market"].values:
+            row = fresh_df[fresh_df["market"] == pair].iloc[0]
+        else:
+            import yfinance as yf
+            symbol = pair.replace("B-", "").replace("_USDT", "") + "-USD"
+            try:
+                ticker = yf.Ticker(symbol)
+                info = ticker.info
+                row = {
+                    "last_price": info.get("currentPrice") or info.get("regularMarketPrice") or 0,
+                    "change_24_hour": info.get("regularMarketChange") or 0,
+                    "change_24_hour_pct": info.get("regularMarketChangePercent") or 0,
+                    "high": info.get("dayHigh") or 0,
+                    "low": info.get("dayLow") or 0,
+                    "volume": info.get("volume") or 0,
+                }
+            except:
+                pass
+    
+    if row is None:
         return
-    row = df[df["market"] == pair]
-    if row.empty:
-        return
-    row = row.iloc[0]
-    chg = float(row.get("change_24_hour", 0) or 0)
+    
+    if isinstance(row, dict):
+        chg = float(row.get("change_24_hour", 0) or 0)
+    else:
+        chg = float(row.get("change_24_hour", 0) or 0)
+    
     cls = "positive" if chg >= 0 else "negative"
     sign = "+" if chg >= 0 else ""
+    
+    if isinstance(row, dict):
+        last_price = row.get("last_price", 0)
+        high = row.get("high", 0)
+        low = row.get("low", 0)
+        volume = row.get("volume", 0)
+    else:
+        last_price = float(row.get("last_price", 0) or 0)
+        high = float(row.get("high", 0) or 0)
+        low = float(row.get("low", 0) or 0)
+        volume = float(row.get("volume", 0) or 0)
+    
     cols = st.columns(6)
     metrics = [
-        ("LAST PRICE", f"${float(row.get('last_price',0)):,.4f}", "", "neutral"),
+        ("LAST PRICE", f"${last_price:,.4f}", "", "neutral"),
         ("24H CHANGE", f"{sign}{chg:.2f}%", "vs yesterday", cls),
-        ("24H HIGH", f"${float(row.get('high',0)):,.4f}", "Session high", "positive"),
-        ("24H LOW", f"${float(row.get('low',0)):,.4f}", "Session low", "negative"),
-        ("VOLUME", f"{float(row.get('volume',0)):,.2f}", "Base asset", "neutral"),
-        ("BID/ASK", f"${float(row.get('bid',0)):,.4f}", f"Ask: ${float(row.get('ask',0)):,.4f}", "neutral"),
+        ("24H HIGH", f"${high:,.4f}", "Session high", "positive"),
+        ("24H LOW", f"${low:,.4f}", "Session low", "negative"),
+        ("VOLUME", f"{volume:,.2f}", "Base asset", "neutral"),
+        ("BID/ASK", "$--", "No order book", "neutral"),
     ]
     for col, (lbl, val, sub, c) in zip(cols, metrics):
         with col:
