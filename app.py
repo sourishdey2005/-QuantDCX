@@ -259,7 +259,7 @@ def page_dashboard():
             st.success(f"Using interval: {interval_used} (fallback from {interval})")
         title_iv = interval_used if interval_used == interval else f"{interval_used} (fallback from {interval})"
         fig = candlestick_chart(df, title=f"{selected_pair} · {title_iv}")
-        st.plotly_chart(fig, use_container_width=True), key="plot_1")
+        st.plotly_chart(fig, use_container_width=True, key="plot_1")
     else:
         st.warning("⚠️ No candle data available for this pair. Try another market.")
 
@@ -290,33 +290,33 @@ def page_market_analysis():
         show_bb = st.checkbox("Bollinger Bands", value=False, key="bb_toggle")
         title_iv = interval_used if interval_used == interval else f"{interval_used} (fallback from {interval})"
         fig = candlestick_chart(df, show_sma=show_sma, show_ema=show_ema, show_vwap=show_vwap, show_bb=show_bb, title=f"Candlestick · {title_iv}")
-        st.plotly_chart(fig, use_container_width=True), key="plot_2")
+        st.plotly_chart(fig, use_container_width=True, key="plot_2")
     with tabs1[1]:
-        st.plotly_chart(heikin_ashi_chart(df), use_container_width=True), key="plot_3")
+        st.plotly_chart(heikin_ashi_chart(df), use_container_width=True, key="plot_3")
     with tabs1[2]:
-        st.plotly_chart(macd_chart(df), use_container_width=True), key="plot_4")
+        st.plotly_chart(macd_chart(df), use_container_width=True, key="plot_4")
     with tabs1[3]:
-        st.plotly_chart(bb_chart(df), use_container_width=True), key="plot_5")
+        st.plotly_chart(bb_chart(df), use_container_width=True, key="plot_5")
     with tabs1[4]:
-        st.plotly_chart(rsi_chart(df), use_container_width=True), key="plot_6")
+        st.plotly_chart(rsi_chart(df), use_container_width=True, key="plot_6")
     with tabs1[5]:
         col1, col2 = st.columns(2)
         with col1:
-            st.plotly_chart(volume_profile_chart(df), use_container_width=True), key="plot_7")
+            st.plotly_chart(volume_profile_chart(df), use_container_width=True, key="plot_7")
         with col2:
-            st.plotly_chart(obv_chart(df), use_container_width=True), key="plot_8")
+            st.plotly_chart(obv_chart(df), use_container_width=True, key="plot_8")
     with tabs1[6]:
-        st.plotly_chart(stoch_rsi_chart(df), use_container_width=True), key="plot_9")
+        st.plotly_chart(stoch_rsi_chart(df), use_container_width=True, key="plot_9")
     with tabs1[7]:
-        st.plotly_chart(williams_r_chart(df), use_container_width=True), key="plot_10")
+        st.plotly_chart(williams_r_chart(df), use_container_width=True, key="plot_10")
     with tabs1[8]:
-        st.plotly_chart(roc_chart(df), use_container_width=True), key="plot_11")
+        st.plotly_chart(roc_chart(df), use_container_width=True, key="plot_11")
     with tabs1[9]:
-        st.plotly_chart(obv_chart(df), use_container_width=True), key="plot_12")
+        st.plotly_chart(obv_chart(df), use_container_width=True, key="plot_12")
     with tabs1[10]:
-        st.plotly_chart(volatility_chart(df), use_container_width=True), key="plot_13")
+        st.plotly_chart(volatility_chart(df), use_container_width=True, key="plot_13")
     with tabs1[11]:
-        st.plotly_chart(zscore_chart(df), use_container_width=True), key="plot_14")
+        st.plotly_chart(zscore_chart(df), use_container_width=True, key="plot_14")
 
     st.markdown("### 📊 Panel 2: Momentum & Volume Indicators")
     tabs2 = st.tabs([
@@ -325,29 +325,29 @@ def page_market_analysis():
         "📊 KST", "🚀 Supertrend"
     ])
     with tabs2[0]:
-        st.plotly_chart(cci_chart(df), use_container_width=True), key="plot_15")
+        st.plotly_chart(cci_chart(df), use_container_width=True, key="plot_15")
     with tabs2[1]:
-        st.plotly_chart(mfi_chart(df), use_container_width=True), key="plot_16")
+        st.plotly_chart(mfi_chart(df), use_container_width=True, key="plot_16")
     with tabs2[2]:
-        st.plotly_chart(adx_chart(df), use_container_width=True), key="plot_17")
+        st.plotly_chart(adx_chart(df), use_container_width=True, key="plot_17")
     with tabs2[3]:
-        st.plotly_chart(stochastic_chart(df), use_container_width=True), key="plot_18")
+        st.plotly_chart(stochastic_chart(df), use_container_width=True, key="plot_18")
     with tabs2[4]:
-        st.plotly_chart(ichimoku_chart(df), use_container_width=True), key="plot_19")
+        st.plotly_chart(ichimoku_chart(df), use_container_width=True, key="plot_19")
     with tabs2[5]:
-        st.plotly_chart(pivot_chart(df), use_container_width=True), key="plot_20")
+        st.plotly_chart(pivot_chart(df), use_container_width=True, key="plot_20")
     with tabs2[6]:
-        st.plotly_chart(fibonacci_chart(df), use_container_width=True), key="plot_21")
+        st.plotly_chart(fibonacci_chart(df), use_container_width=True, key="plot_21")
     with tabs2[7]:
-        st.plotly_chart(ease_of_movement_chart(df), use_container_width=True), key="plot_22")
+        st.plotly_chart(ease_of_movement_chart(df), use_container_width=True, key="plot_22")
     with tabs2[8]:
-        st.plotly_chart(force_index_chart(df), use_container_width=True), key="plot_23")
+        st.plotly_chart(force_index_chart(df), use_container_width=True, key="plot_23")
     with tabs2[9]:
-        st.plotly_chart(mass_index_chart(df), use_container_width=True), key="plot_24")
+        st.plotly_chart(mass_index_chart(df), use_container_width=True, key="plot_24")
     with tabs2[10]:
-        st.plotly_chart(kst_chart(df), use_container_width=True), key="plot_25")
+        st.plotly_chart(kst_chart(df), use_container_width=True, key="plot_25")
     with tabs2[11]:
-        st.plotly_chart(supertrend_chart(df), use_container_width=True), key="plot_26")
+        st.plotly_chart(supertrend_chart(df), use_container_width=True, key="plot_26")
 
     st.markdown("### 📊 Panel 3: Advanced Oscillators")
     tabs3 = st.tabs([
@@ -356,29 +356,29 @@ def page_market_analysis():
         "📐 Keltner Width", "💵 MFV"
     ])
     with tabs3[0]:
-        st.plotly_chart(realized_volatility_chart(df), use_container_width=True), key="plot_27")
+        st.plotly_chart(realized_volatility_chart(df), use_container_width=True, key="plot_27")
     with tabs3[1]:
-        st.plotly_chart(momentum_chart(df), use_container_width=True), key="plot_28")
+        st.plotly_chart(momentum_chart(df), use_container_width=True, key="plot_28")
     with tabs3[2]:
-        st.plotly_chart(tsi_chart(df), use_container_width=True), key="plot_29")
+        st.plotly_chart(tsi_chart(df), use_container_width=True, key="plot_29")
     with tabs3[3]:
-        st.plotly_chart(ulcer_index_chart(df), use_container_width=True), key="plot_30")
+        st.plotly_chart(ulcer_index_chart(df), use_container_width=True, key="plot_30")
     with tabs3[4]:
-        st.plotly_chart(kama_chart(df), use_container_width=True), key="plot_31")
+        st.plotly_chart(kama_chart(df), use_container_width=True, key="plot_31")
     with tabs3[5]:
-        st.plotly_chart(elder_ray_chart(df), use_container_width=True), key="plot_32")
+        st.plotly_chart(elder_ray_chart(df), use_container_width=True, key="plot_32")
     with tabs3[6]:
-        st.plotly_chart(vortex_chart(df), use_container_width=True), key="plot_33")
+        st.plotly_chart(vortex_chart(df), use_container_width=True, key="plot_33")
     with tabs3[7]:
-        st.plotly_chart(aroon_chart(df), use_container_width=True), key="plot_34")
+        st.plotly_chart(aroon_chart(df), use_container_width=True, key="plot_34")
     with tabs3[8]:
-        st.plotly_chart(copp_curve_chart(df), use_container_width=True), key="plot_35")
+        st.plotly_chart(copp_curve_chart(df), use_container_width=True, key="plot_35")
     with tabs3[9]:
-        st.plotly_chart(vwap_bandwidth_chart(df), use_container_width=True), key="plot_36")
+        st.plotly_chart(vwap_bandwidth_chart(df), use_container_width=True, key="plot_36")
     with tabs3[10]:
-        st.plotly_chart(keltner_width_chart(df), use_container_width=True), key="plot_37")
+        st.plotly_chart(keltner_width_chart(df), use_container_width=True, key="plot_37")
     with tabs3[11]:
-        st.plotly_chart(money_flow_volume_chart(df), use_container_width=True), key="plot_38")
+        st.plotly_chart(money_flow_volume_chart(df), use_container_width=True, key="plot_38")
 
     st.markdown("### 📊 Panel 4: Moving Averages & Channels")
     tabs4 = st.tabs([
@@ -387,29 +387,29 @@ def page_market_analysis():
         "📊 A/D", "📐 Donchian"
     ])
     with tabs4[0]:
-        st.plotly_chart(pvt_chart(df), use_container_width=True), key="plot_39")
+        st.plotly_chart(pvt_chart(df), use_container_width=True, key="plot_39")
     with tabs4[1]:
-        st.plotly_chart(aroon_oscillator_chart(df), use_container_width=True), key="plot_40")
+        st.plotly_chart(aroon_oscillator_chart(df), use_container_width=True, key="plot_40")
     with tabs4[2]:
-        st.plotly_chart(trend_intensity_chart(df), use_container_width=True), key="plot_41")
+        st.plotly_chart(trend_intensity_chart(df), use_container_width=True, key="plot_41")
     with tabs4[3]:
-        st.plotly_chart(dpo_chart(df), use_container_width=True), key="plot_42")
+        st.plotly_chart(dpo_chart(df), use_container_width=True, key="plot_42")
     with tabs4[4]:
-        st.plotly_chart(log_returns_chart(df), use_container_width=True), key="plot_43")
+        st.plotly_chart(log_returns_chart(df), use_container_width=True, key="plot_43")
     with tabs4[5]:
-        st.plotly_chart(Arnaud_Legaux_chart(df), use_container_width=True), key="plot_44")
+        st.plotly_chart(Arnaud_Legaux_chart(df), use_container_width=True, key="plot_44")
     with tabs4[6]:
-        st.plotly_chart(keltner_filled_chart(df), use_container_width=True), key="plot_45")
+        st.plotly_chart(keltner_filled_chart(df), use_container_width=True, key="plot_45")
     with tabs4[7]:
-        st.plotly_chart(multi_sma_chart(df), use_container_width=True), key="plot_46")
+        st.plotly_chart(multi_sma_chart(df), use_container_width=True, key="plot_46")
     with tabs4[8]:
-        st.plotly_chart(multi_ema_chart(df), use_container_width=True), key="plot_47")
+        st.plotly_chart(multi_ema_chart(df), use_container_width=True, key="plot_47")
     with tabs4[9]:
-        st.plotly_chart(hull_ma_chart(df), use_container_width=True), key="plot_48")
+        st.plotly_chart(hull_ma_chart(df), use_container_width=True, key="plot_48")
     with tabs4[10]:
-        st.plotly_chart(wma_chart(df), use_container_width=True), key="plot_49")
+        st.plotly_chart(wma_chart(df), use_container_width=True, key="plot_49")
     with tabs4[11]:
-        st.plotly_chart(donchian_filled_chart(df), use_container_width=True), key="plot_50")
+        st.plotly_chart(donchian_filled_chart(df), use_container_width=True, key="plot_50")
 
     # Download CSV
     if not df.empty:
@@ -448,10 +448,10 @@ def page_trade_flow():
     ])
 
     with tabs1[0]:
-        st.plotly_chart(trade_bubble_chart(trades), use_container_width=True), key="plot_51")
+        st.plotly_chart(trade_bubble_chart(trades), use_container_width=True, key="plot_51")
 
     with tabs1[1]:
-        st.plotly_chart(buy_sell_pressure(trades), use_container_width=True), key="plot_52")
+        st.plotly_chart(buy_sell_pressure(trades), use_container_width=True, key="plot_52")
 
     with tabs1[2]:
         st.markdown('<div class="section-label">LIVE TRADE TAPE</div>', unsafe_allow_html=True)
@@ -474,11 +474,11 @@ def page_trade_flow():
                 mode="lines", line=dict(color=NEON_BLUE, width=1.5), name="Trade Intensity"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG,
                 font=dict(color="#C8D8F0"), title="Trade Intensity Timeline")
-            st.plotly_chart(fig, use_container_width=True), key="plot_53")
+            st.plotly_chart(fig, use_container_width=True, key="plot_53")
 
     with tabs1[4]:
         if viz_mode == "3D Advanced":
-            st.plotly_chart(trades_scatter_3d(trades), use_container_width=True), key="plot_54")
+            st.plotly_chart(trades_scatter_3d(trades), use_container_width=True, key="plot_54")
         else:
             st.info("Switch to **3D Advanced** in the sidebar.")
 
@@ -487,7 +487,7 @@ def page_trade_flow():
             fig = px.histogram(trades, x="quantity", nbins=30, title="Trade Size Distribution",
                 color_discrete_sequence=[NEON_BLUE])
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"))
-            st.plotly_chart(fig, use_container_width=True), key="plot_55")
+            st.plotly_chart(fig, use_container_width=True, key="plot_55")
 
     with tabs1[6]:
         if "side" in trades.columns and "timestamp" in trades.columns:
@@ -504,7 +504,7 @@ def page_trade_flow():
                 mode="lines", line=dict(color=NEON_RED, width=2), name="Cumulative Sells"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Buy/Sell Cumulative Timeline")
-            st.plotly_chart(fig, use_container_width=True), key="plot_56")
+            st.plotly_chart(fig, use_container_width=True, key="plot_56")
 
     with tabs1[7]:
         if "quantity" in trades.columns and "timestamp" in trades.columns:
@@ -516,7 +516,7 @@ def page_trade_flow():
                 line=dict(color=NEON_BLUE, width=2), name="Cumulative Volume"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Cumulative Trade Volume")
-            st.plotly_chart(fig, use_container_width=True), key="plot_57")
+            st.plotly_chart(fig, use_container_width=True, key="plot_57")
 
     st.markdown("### 📊 Panel 2: Advanced Analysis")
     tabs2 = st.tabs([
@@ -530,7 +530,7 @@ def page_trade_flow():
                 colorscale=[[0, NEON_BLUE], [1, NEON_RED]]))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Trade Heatmap (Price vs Quantity)", xaxis_title="Price", yaxis_title="Quantity")
-            st.plotly_chart(fig, use_container_width=True), key="plot_58")
+            st.plotly_chart(fig, use_container_width=True, key="plot_58")
 
     with tabs2[1]:
         if "side" in trades.columns and "quantity" in trades.columns and "timestamp" in trades.columns:
@@ -544,7 +544,7 @@ def page_trade_flow():
                 line=dict(color=NEON_BLUE, width=2), name="Order Imbalance"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Order Flow Imbalance")
-            st.plotly_chart(fig, use_container_width=True), key="plot_59")
+            st.plotly_chart(fig, use_container_width=True, key="plot_59")
 
     with tabs2[2]:
         if "quantity" in trades.columns and "price" in trades.columns:
@@ -557,7 +557,7 @@ def page_trade_flow():
                 marker=dict(color=NEON_YELLOW, size=12, symbol="star"), name="Whale Trades"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title=f"Whale Trade Detection (Top 5%, threshold={threshold:.4f})")
-            st.plotly_chart(fig, use_container_width=True), key="plot_60")
+            st.plotly_chart(fig, use_container_width=True, key="plot_60")
 
     with tabs2[3]:
         if "quantity" in trades.columns and "price" in trades.columns:
@@ -569,7 +569,7 @@ def page_trade_flow():
                 marker_color=trades_pi["price_change"].apply(lambda x: NEON_GREEN if x >= 0 else NEON_RED)))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Price Impact per Trade")
-            st.plotly_chart(fig, use_container_width=True), key="plot_61")
+            st.plotly_chart(fig, use_container_width=True, key="plot_61")
 
     with tabs2[4]:
         if "price" in trades.columns and "timestamp" in trades.columns:
@@ -583,7 +583,7 @@ def page_trade_flow():
                 mode="lines", line=dict(color=NEON_YELLOW, width=2), name="TWAP"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Price vs TWAP Comparison")
-            st.plotly_chart(fig, use_container_width=True), key="plot_62")
+            st.plotly_chart(fig, use_container_width=True, key="plot_62")
 
     with tabs2[5]:
         if "price" in trades.columns and "quantity" in trades.columns and "timestamp" in trades.columns:
@@ -596,7 +596,7 @@ def page_trade_flow():
             fig.add_hline(y=0, line_dash="dash", line_color="#6B8BB0")
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Trade Momentum (Price - VWAP)")
-            st.plotly_chart(fig, use_container_width=True), key="plot_63")
+            st.plotly_chart(fig, use_container_width=True, key="plot_63")
 
     with tabs2[6]:
         if "price" in trades.columns and "quantity" in trades.columns:
@@ -607,7 +607,7 @@ def page_trade_flow():
                 marker_color=NEON_GREEN, name="Volume at Price"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Volume Profile by Price Level", xaxis_title="Price Range", yaxis_title="Volume")
-            st.plotly_chart(fig, use_container_width=True), key="plot_64")
+            st.plotly_chart(fig, use_container_width=True, key="plot_64")
 
     with tabs2[7]:
         if "timestamp" in trades.columns:
@@ -618,7 +618,7 @@ def page_trade_flow():
                 marker_color=NEON_BLUE, name="Trade Volume"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Trade Activity by Hour of Day", xaxis_title="Hour", yaxis_title="Volume/Count")
-            st.plotly_chart(fig, use_container_width=True), key="plot_65")
+            st.plotly_chart(fig, use_container_width=True, key="plot_65")
 
 
 # ── PAGE: ADVANCED ANALYTICS ───────────────────────────────────────────────────
@@ -642,15 +642,15 @@ def page_advanced():
     ])
 
     with tabs1[0]:
-        st.plotly_chart(cumulative_returns_chart(df), use_container_width=True), key="plot_66")
+        st.plotly_chart(cumulative_returns_chart(df), use_container_width=True, key="plot_66")
 
     with tabs1[1]:
-        st.plotly_chart(drawdown_chart(df), use_container_width=True), key="plot_67")
+        st.plotly_chart(drawdown_chart(df), use_container_width=True, key="plot_67")
 
     with tabs1[2]:
         col1, col2 = st.columns(2)
         with col1:
-            st.plotly_chart(returns_histogram(df), use_container_width=True), key="plot_68")
+            st.plotly_chart(returns_histogram(df), use_container_width=True, key="plot_68")
         with col2:
             if not df.empty:
                 returns = df["close"].pct_change().dropna() * 100
@@ -663,10 +663,10 @@ def page_advanced():
                 st.markdown(metric_card("ANN. VOLATILITY", f"{vol:.2f}%", "Historical", "neutral"), unsafe_allow_html=True)
 
     with tabs1[3]:
-        st.plotly_chart(volatility_chart(df), use_container_width=True), key="plot_69")
+        st.plotly_chart(volatility_chart(df), use_container_width=True, key="plot_69")
 
     with tabs1[4]:
-        st.plotly_chart(zscore_chart(df), use_container_width=True), key="plot_70")
+        st.plotly_chart(zscore_chart(df), use_container_width=True, key="plot_70")
 
     with tabs1[5]:
         if not df.empty:
@@ -688,7 +688,7 @@ def page_advanced():
                 fig.add_trace(go.Scatter(x=df["time"], y=don_lower, line=dict(color=NEON_PURPLE, width=1, dash="dot"), name="Donchian Lower"))
                 fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                     title="Keltner + Donchian Channels", height=500)
-                st.plotly_chart(fig, use_container_width=True), key="plot_71")
+                st.plotly_chart(fig, use_container_width=True, key="plot_71")
 
     with tabs1[6]:
         if not df.empty:
@@ -700,7 +700,7 @@ def page_advanced():
                 fig.add_trace(go.Scatter(x=df["time"], y=df["close"], line=dict(color=NEON_BLUE, width=1.5), name="Price"))
                 fig.add_trace(go.Scatter(x=df["time"], y=hull, line=dict(color=NEON_GREEN, width=2), name="Hull MA(20)"))
                 fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Hull Moving Average")
-                st.plotly_chart(fig, use_container_width=True), key="plot_72")
+                st.plotly_chart(fig, use_container_width=True, key="plot_72")
 
     with tabs1[7]:
         if not df.empty:
@@ -712,13 +712,13 @@ def page_advanced():
                 fig = go.Figure(go.Bar(x=df["time"], y=cmf, marker_color=colors, name="Chaikin MF"))
                 fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                     title="Chaikin Money Flow")
-                st.plotly_chart(fig, use_container_width=True), key="plot_73")
+                st.plotly_chart(fig, use_container_width=True, key="plot_73")
 
     with tabs1[8]:
-        st.plotly_chart(realized_volatility_chart(df), use_container_width=True), key="plot_74")
+        st.plotly_chart(realized_volatility_chart(df), use_container_width=True, key="plot_74")
 
     with tabs1[9]:
-        st.plotly_chart(momentum_chart(df), use_container_width=True), key="plot_75")
+        st.plotly_chart(momentum_chart(df), use_container_width=True, key="plot_75")
 
     st.markdown("### Panel 2: 3D Visualization")
     tabs2 = st.tabs([
@@ -727,10 +727,10 @@ def page_advanced():
     ])
 
     with tabs2[0]:
-        st.plotly_chart(price_surface_3d(df), use_container_width=True), key="plot_76")
+        st.plotly_chart(price_surface_3d(df), use_container_width=True, key="plot_76")
 
     with tabs2[1]:
-        st.plotly_chart(volatility_surface_3d(df), use_container_width=True), key="plot_77")
+        st.plotly_chart(volatility_surface_3d(df), use_container_width=True, key="plot_77")
 
     with tabs2[2]:
         if not df.empty:
@@ -744,7 +744,7 @@ def page_advanced():
             fig.add_trace(go.Scatter(x=df["time"], y=sma200, line=dict(color=NEON_RED, width=1.5), name="SMA 200"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Price Ribbon (Multiple SMAs)")
-            st.plotly_chart(fig, use_container_width=True), key="plot_78")
+            st.plotly_chart(fig, use_container_width=True, key="plot_78")
 
     with tabs2[3]:
         if not df.empty and "volume" in df.columns:
@@ -753,7 +753,7 @@ def page_advanced():
                 colorscale=[[0, NEON_BLUE], [1, NEON_RED]]))
             fig.update_layout(paper_bgcolor=DARK_BG, font=dict(color="#C8D8F0"),
                 title="Volume Surface", scene=dict(xaxis_title="Time", yaxis_title="Price", zaxis_title="Volume"))
-            st.plotly_chart(fig, use_container_width=True), key="plot_79")
+            st.plotly_chart(fig, use_container_width=True, key="plot_79")
 
     with tabs2[4]:
         if not df.empty:
@@ -762,7 +762,7 @@ def page_advanced():
                 mode="markers", marker=dict(size=3, color=df["close"], colorscale="Viridis")))
             fig.update_layout(paper_bgcolor=DARK_BG, font=dict(color="#C8D8F0"),
                 title="Time-Price-Volume 3D", scene=dict(xaxis_title="Time", yaxis_title="Price", zaxis_title="Volume"))
-            st.plotly_chart(fig, use_container_width=True), key="plot_80")
+            st.plotly_chart(fig, use_container_width=True, key="plot_80")
 
     with tabs2[5]:
         if not df.empty:
@@ -771,7 +771,7 @@ def page_advanced():
                 colorscale=[[0, NEON_BLUE], [1, NEON_RED]]))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Return Distribution Heatmap")
-            st.plotly_chart(fig, use_container_width=True), key="plot_81")
+            st.plotly_chart(fig, use_container_width=True, key="plot_81")
 
     with tabs2[6]:
         if not df.empty:
@@ -783,7 +783,7 @@ def page_advanced():
                 colorscale=[[0, NEON_BLUE], [1, NEON_RED]]))
             fig.update_layout(paper_bgcolor=DARK_BG, font=dict(color="#C8D8F0"),
                 title="Volume Heatmap (Hour vs Day)")
-            st.plotly_chart(fig, use_container_width=True), key="plot_82")
+            st.plotly_chart(fig, use_container_width=True, key="plot_82")
 
     with tabs2[7]:
         if not df.empty:
@@ -795,7 +795,7 @@ def page_advanced():
             fig.add_trace(go.Scatter(x=df["time"], y=df["accel"], line=dict(color=NEON_RED, width=1), name="Acceleration"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"),
                 title="Price Velocity & Acceleration")
-            st.plotly_chart(fig, use_container_width=True), key="plot_83")
+            st.plotly_chart(fig, use_container_width=True, key="plot_83")
 
     st.markdown("### Panel 3: Oscillators & Momentum")
     tabs3 = st.tabs([
@@ -804,34 +804,34 @@ def page_advanced():
     ])
 
     with tabs3[0]:
-        st.plotly_chart(cci_chart(df), use_container_width=True), key="plot_84")
+        st.plotly_chart(cci_chart(df), use_container_width=True, key="plot_84")
 
     with tabs3[1]:
-        st.plotly_chart(mfi_chart(df), use_container_width=True), key="plot_85")
+        st.plotly_chart(mfi_chart(df), use_container_width=True, key="plot_85")
 
     with tabs3[2]:
-        st.plotly_chart(adx_chart(df), use_container_width=True), key="plot_86")
+        st.plotly_chart(adx_chart(df), use_container_width=True, key="plot_86")
 
     with tabs3[3]:
-        st.plotly_chart(stochastic_chart(df), use_container_width=True), key="plot_87")
+        st.plotly_chart(stochastic_chart(df), use_container_width=True, key="plot_87")
 
     with tabs3[4]:
-        st.plotly_chart(tsi_chart(df), use_container_width=True), key="plot_88")
+        st.plotly_chart(tsi_chart(df), use_container_width=True, key="plot_88")
 
     with tabs3[5]:
-        st.plotly_chart(ulcer_index_chart(df), use_container_width=True), key="plot_89")
+        st.plotly_chart(ulcer_index_chart(df), use_container_width=True, key="plot_89")
 
     with tabs3[6]:
-        st.plotly_chart(elder_ray_chart(df), use_container_width=True), key="plot_90")
+        st.plotly_chart(elder_ray_chart(df), use_container_width=True, key="plot_90")
 
     with tabs3[7]:
-        st.plotly_chart(vortex_chart(df), use_container_width=True), key="plot_91")
+        st.plotly_chart(vortex_chart(df), use_container_width=True, key="plot_91")
 
     with tabs3[8]:
-        st.plotly_chart(kst_chart(df), use_container_width=True), key="plot_92")
+        st.plotly_chart(kst_chart(df), use_container_width=True, key="plot_92")
 
     with tabs3[9]:
-        st.plotly_chart(supertrend_chart(df), use_container_width=True), key="plot_93")
+        st.plotly_chart(supertrend_chart(df), use_container_width=True, key="plot_93")
 
     st.markdown("### Panel 4: Trend & Indicators")
     tabs4 = st.tabs([
@@ -840,34 +840,34 @@ def page_advanced():
     ])
 
     with tabs4[0]:
-        st.plotly_chart(ichimoku_chart(df), use_container_width=True), key="plot_94")
+        st.plotly_chart(ichimoku_chart(df), use_container_width=True, key="plot_94")
 
     with tabs4[1]:
-        st.plotly_chart(pivot_chart(df), use_container_width=True), key="plot_95")
+        st.plotly_chart(pivot_chart(df), use_container_width=True, key="plot_95")
 
     with tabs4[2]:
-        st.plotly_chart(fibonacci_chart(df), use_container_width=True), key="plot_96")
+        st.plotly_chart(fibonacci_chart(df), use_container_width=True, key="plot_96")
 
     with tabs4[3]:
-        st.plotly_chart(ease_of_movement_chart(df), use_container_width=True), key="plot_97")
+        st.plotly_chart(ease_of_movement_chart(df), use_container_width=True, key="plot_97")
 
     with tabs4[4]:
-        st.plotly_chart(force_index_chart(df), use_container_width=True), key="plot_98")
+        st.plotly_chart(force_index_chart(df), use_container_width=True, key="plot_98")
 
     with tabs4[5]:
-        st.plotly_chart(mass_index_chart(df), use_container_width=True), key="plot_99")
+        st.plotly_chart(mass_index_chart(df), use_container_width=True, key="plot_99")
 
     with tabs4[6]:
-        st.plotly_chart(kama_chart(df), use_container_width=True), key="plot_100")
+        st.plotly_chart(kama_chart(df), use_container_width=True, key="plot_100")
 
     with tabs4[7]:
-        st.plotly_chart(aroon_chart(df), use_container_width=True), key="plot_101")
+        st.plotly_chart(aroon_chart(df), use_container_width=True, key="plot_101")
 
     with tabs4[8]:
-        st.plotly_chart(copp_curve_chart(df), use_container_width=True), key="plot_102")
+        st.plotly_chart(copp_curve_chart(df), use_container_width=True, key="plot_102")
 
     with tabs4[9]:
-        st.plotly_chart(vwap_bandwidth_chart(df), use_container_width=True), key="plot_103")
+        st.plotly_chart(vwap_bandwidth_chart(df), use_container_width=True, key="plot_103")
 
     st.markdown("### Panel 5: Candlestick Patterns")
     tabs5 = st.tabs([
@@ -881,10 +881,10 @@ def page_advanced():
         show_ema = st.checkbox("Show EMA", value=True, key="ema_std")
         title_iv = interval_used if interval_used == interval else f"{interval_used} (fallback from {interval})"
         fig = candlestick_chart(df, show_sma=show_sma, show_ema=show_ema, show_vwap=False, show_bb=False, title=f"Standard Candlestick - {title_iv}")
-        st.plotly_chart(fig, use_container_width=True), key="plot_104")
+        st.plotly_chart(fig, use_container_width=True, key="plot_104")
 
     with tabs5[1]:
-        st.plotly_chart(heikin_ashi_chart(df), use_container_width=True), key="plot_105")
+        st.plotly_chart(heikin_ashi_chart(df), use_container_width=True, key="plot_105")
 
     with tabs5[2]:
         if not df.empty:
@@ -902,7 +902,7 @@ def page_advanced():
             colors = [NEON_GREEN if c >= o else NEON_RED for c, o in zip(df_lb["lb_close"], df_lb["lb_open"])]
             fig = go.Figure(go.Bar(x=df_lb["time"], y=df_lb["lb_close"] - df_lb["lb_open"], marker_color=colors))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Line Break Chart")
-            st.plotly_chart(fig, use_container_width=True), key="plot_106")
+            st.plotly_chart(fig, use_container_width=True, key="plot_106")
 
     with tabs5[3]:
         if not df.empty:
@@ -911,19 +911,19 @@ def page_advanced():
             df_renko["renko"] = (df["close"] / box_size).round() * box_size
             fig = go.Figure(go.Scatter(x=df_renko.index, y=df_renko["renko"], mode="lines", line=dict(color=NEON_BLUE, width=2)))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Renko Chart")
-            st.plotly_chart(fig, use_container_width=True), key="plot_107")
+            st.plotly_chart(fig, use_container_width=True, key="plot_107")
 
     with tabs5[4]:
         if not df.empty:
             fig = go.Figure(go.Scatter(x=df["time"], y=df["close"], mode="lines", line=dict(color=NEON_BLUE, width=2)))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Kagi Chart (Simplified)")
-            st.plotly_chart(fig, use_container_width=True), key="plot_108")
+            st.plotly_chart(fig, use_container_width=True, key="plot_108")
 
     with tabs5[5]:
         if not df.empty:
             fig = go.Figure(go.Scatter(x=df["time"], y=df["close"], mode="lines", line=dict(color=NEON_YELLOW, width=2)))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Point & Figure (Simplified)")
-            st.plotly_chart(fig, use_container_width=True), key="plot_109")
+            st.plotly_chart(fig, use_container_width=True, key="plot_109")
 
     with tabs5[6]:
         if not df.empty:
@@ -932,7 +932,7 @@ def page_advanced():
             df_rb["range"] = (df["close"] / bar_size).round() * bar_size
             fig = go.Figure(go.Bar(x=df_rb["time"], y=df_rb["range"], marker_color=NEON_BLUE))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Range Bars")
-            st.plotly_chart(fig, use_container_width=True), key="plot_110")
+            st.plotly_chart(fig, use_container_width=True, key="plot_110")
 
     with tabs5[7]:
         if not df.empty:
@@ -942,7 +942,7 @@ def page_advanced():
             colors = [NEON_GREEN if t else NEON_RED for t in df_tb["trend_up"]]
             fig = go.Figure(go.Bar(x=df_tb["time"], y=df_tb["close"], marker_color=colors))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Trend Bars")
-            st.plotly_chart(fig, use_container_width=True), key="plot_111")
+            st.plotly_chart(fig, use_container_width=True, key="plot_111")
 
     with tabs5[8]:
         if not df.empty:
@@ -950,7 +950,7 @@ def page_advanced():
             fig.add_trace(go.Candlestick(x=df["time"], open=df["open"], high=df["high"], low=df["low"], close=df["close"],
                 increasing_line_color=NEON_GREEN, decreasing_line_color=NEON_RED, name="OHLC"))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="OHLC Bars")
-            st.plotly_chart(fig, use_container_width=True), key="plot_112")
+            st.plotly_chart(fig, use_container_width=True, key="plot_112")
 
     with tabs5[9]:
         if not df.empty:
@@ -959,7 +959,7 @@ def page_advanced():
             colors_hc = ["rgba(0,255,136,0.8)" if h else "rgba(255,51,102,0.8)" for h in df_hc["is_hollow"]]
             fig = go.Figure(go.Bar(x=df_hc["time"], y=df_hc["close"] - df_hc["open"], marker_color=colors_hc))
             fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG, font=dict(color="#C8D8F0"), title="Hollow Candles")
-            st.plotly_chart(fig, use_container_width=True), key="plot_113")
+            st.plotly_chart(fig, use_container_width=True, key="plot_113")
 
 # ── PAGE: MULTI-COMPARE ────────────────────────────────────────────────────────
 def page_multi_compare():
@@ -1012,10 +1012,10 @@ def page_multi_compare():
     tabs = st.tabs(["📈 Normalized Returns", "📊 Correlation Matrix", "🌐 3D Correlation", "📉 Individual Charts"])
 
     with tabs[0]:
-        st.plotly_chart(multi_asset_comparison(price_dict), use_container_width=True), key="plot_114")
+        st.plotly_chart(multi_asset_comparison(price_dict), use_container_width=True, key="plot_114")
 
     with tabs[1]:
-        st.plotly_chart(correlation_heatmap(price_dict), use_container_width=True), key="plot_115")
+        st.plotly_chart(correlation_heatmap(price_dict), use_container_width=True, key="plot_115")
 
     with tabs[2]:
         if len(price_dict) >= 2:
@@ -1029,7 +1029,7 @@ def page_multi_compare():
             fig.update_layout(paper_bgcolor=DARK_BG,
                 scene=dict(bgcolor=DARK_BG, xaxis_title="", yaxis_title="", zaxis_title="Correlation"),
                 title="3D Correlation Surface", height=600, font=dict(color="#C8D8F0"))
-            st.plotly_chart(fig, use_container_width=True), key="plot_116")
+            st.plotly_chart(fig, use_container_width=True, key="plot_116")
 
     with tabs[3]:
         for name, prices in price_dict.items():
@@ -1038,7 +1038,7 @@ def page_multi_compare():
                     line=dict(color=NEON_BLUE, width=1.5)))
                 fig.update_layout(paper_bgcolor=DARK_BG, plot_bgcolor=CARD_BG,
                     font=dict(color="#C8D8F0"), title=name, height=250)
-                st.plotly_chart(fig, use_container_width=True), key="plot_117")
+                st.plotly_chart(fig, use_container_width=True, key="plot_117")
 
     if len(price_dict) >= 2:
         prices_df = pd.DataFrame(price_dict).dropna()
@@ -1054,7 +1054,7 @@ def page_market_heatmap():
         st.error("Cannot load ticker data.")
         return
     fig = market_heatmap(ticker_df)
-    st.plotly_chart(fig, use_container_width=True), key="plot_118")
+    st.plotly_chart(fig, use_container_width=True, key="plot_118")
 
     st.markdown('<div class="section-label">📊 FULL MARKET TABLE</div>', unsafe_allow_html=True)
     if not ticker_df.empty:
