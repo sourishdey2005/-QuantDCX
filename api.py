@@ -156,10 +156,15 @@ def get_orderbook(pair: str) -> tuple[pd.DataFrame, pd.DataFrame]:
 @st.cache_data(ttl=30)
 def get_trades(pair: str) -> pd.DataFrame:
     df = get_candles(pair, "1h", 50)
-    if not df.empty:
-        df = df.rename(columns={"close": "price", "volume": "quantity"})
-        df["side"] = np.where(df["close"] > df["open"], "buy", "sell")
-        df["timestamp"] = df["time"]
+    if df.empty:
+        return pd.DataFrame()
+    
+    if "close" not in df.columns or "open" not in df.columns:
+        return pd.DataFrame()
+    
+    df = df.rename(columns={"close": "price", "volume": "quantity"})
+    df["side"] = np.where(df["close"] > df["open"], "buy", "sell")
+    df["timestamp"] = df["time"]
     return df
 
 def _normalize_trades(raw) -> pd.DataFrame:
