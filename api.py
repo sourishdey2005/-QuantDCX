@@ -162,9 +162,12 @@ def get_trades(pair: str) -> pd.DataFrame:
     if "close" not in df.columns or "open" not in df.columns:
         return pd.DataFrame()
     
-    df = df.rename(columns={"close": "price", "volume": "quantity"})
+    df = df.copy()
     df["side"] = np.where(df["close"] > df["open"], "buy", "sell")
     df["timestamp"] = df["time"]
+    df["price"] = df["close"]
+    df["quantity"] = df["volume"]
+    df = df[["timestamp", "price", "quantity", "side"]].copy()
     return df
 
 def _normalize_trades(raw) -> pd.DataFrame:
