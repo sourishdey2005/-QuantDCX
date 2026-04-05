@@ -105,5 +105,5 @@ Uses `scipy.optimize.minimize` with:
 
 Made with ❤️ by **Sourish Dey**
 
-[![GitHub](https://img.shields.io/badge/GitHub-sourishdey-blue)](https://github.com/sourishdey)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-sourishdey-blue)](https://linkedin.com/in/sourishdey)
+[![GitHub](https://img.shields.io/badge/GitHub-sourishdey-blue)](https://github.com/sourishdey2005)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-sourishdey-blue)](https://www.linkedin.com/in/sourish-dey-20b170206/)
