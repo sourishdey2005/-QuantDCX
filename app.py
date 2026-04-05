@@ -115,14 +115,14 @@ with st.sidebar:
     all_pairs = get_all_pairs()
     if not all_pairs:
         all_pairs = ALL_PAIRS_DEFAULT
-    if len(all_pairs) < 50:
-        all_pairs = sorted(list(set(all_pairs + ALL_PAIRS_DEFAULT)))
-
+    
     valid_pairs_data = get_valid_pairs()
     if valid_pairs_data:
         valid_symbols = [p.get("symbol") or p.get("pair") for p in valid_pairs_data if p.get("symbol") or p.get("pair")]
         if valid_symbols:
             all_pairs = sorted(set(all_pairs + valid_symbols))
+    
+    all_pairs = sorted(set(all_pairs + ALL_PAIRS_DEFAULT))
 
     selected_pair = st.selectbox("Trading Pair", options=all_pairs,
         index=0 if "B-BTC_USDT" not in all_pairs else all_pairs.index("B-BTC_USDT"),
