@@ -91,6 +91,28 @@ def get_ticker():
     latency = int((time.time() - start) * 1000)
     return pd.DataFrame(data), latency
 
+@st.cache_data(ttl=60)
+def get_ticker_for_pair(pair: str):
+    """Get ticker data for a specific pair."""
+    symbol = _get_yahoo_symbol(pair)
+    try:
+        ticker = yf.Ticker(symbol)
+        info = ticker.info
+        price = info.get("currentPrice") or info.get("regularMarketPrice") or 0
+        if price > 0:
+            return {
+                "market": pair,
+                "last_price": price,
+                "change_24_hour": info.get("regularMarketChange") or 0,
+                "change_24_hour_pct": info.get("regularMarketChangePercent") or 0,
+                "volume": info.get("volume") or 0,
+                "high": info.get("dayHigh") or 0,
+                "low": info.get("dayLow") or 0
+            }
+    except Exception:
+        pass
+    return None
+
 @st.cache_data(ttl=3600)
 def get_markets():
     return [{"pair": f"B-{s.upper()}_USDT", "symbol": f"B-{s.upper()}_USDT"} for s in ALL_PAIRS]

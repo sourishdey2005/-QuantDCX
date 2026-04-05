@@ -18,7 +18,7 @@ st.set_page_config(
 
 # ── IMPORTS ────────────────────────────────────────────────────────────────────
 from styles import TERMINAL_CSS
-from api import get_ticker, get_markets, get_candles, get_orderbook, get_trades, get_all_pairs, get_best_candles, get_valid_pairs, get_candles_safe
+from api import get_ticker, get_markets, get_candles, get_orderbook, get_trades, get_all_pairs, get_best_candles, get_valid_pairs, get_candles_safe, get_ticker_for_pair
 from charts import (
     candlestick_chart, heikin_ashi_chart, macd_chart, volume_profile_chart,
     orderbook_chart, orderbook_heatmap, trade_bubble_chart, buy_sell_pressure,
@@ -178,51 +178,32 @@ def metric_card(label, value, sub="", cls="neutral"):
 # ── LIVE PRICE PANEL ───────────────────────────────────────────────────────────
 def render_live_price(df, pair):
     row = None
+    
     if not df.empty and pair in df["market"].values:
         row = df[df["market"] == pair].iloc[0]
     else:
-        from api import get_ticker
-        fresh_df, _ = get_ticker()
-        if not fresh_df.empty and pair in fresh_df["market"].values:
-            row = fresh_df[fresh_df["market"] == pair].iloc[0]
-        else:
-            import yfinance as yf
-            symbol = pair.replace("B-", "").replace("_USDT", "") + "-USD"
-            try:
-                ticker = yf.Ticker(symbol)
-                info = ticker.info
-                row = {
-                    "last_price": info.get("currentPrice") or info.get("regularMarketPrice") or 0,
-                    "change_24_hour": info.get("regularMarketChange") or 0,
-                    "change_24_hour_pct": info.get("regularMarketChangePercent") or 0,
-                    "high": info.get("dayHigh") or 0,
-                    "low": info.get("dayLow") or 0,
-                    "volume": info.get("volume") or 0,
-                }
-            except:
-                pass
+        data = get_ticker_for_pair(pair)
+        if data:
+            row = data
     
     if row is None:
         return
     
     if isinstance(row, dict):
-        chg = float(row.get("change_24_hour", 0) or 0)
-    else:
-        chg = float(row.get("change_24_hour", 0) or 0)
-    
-    cls = "positive" if chg >= 0 else "negative"
-    sign = "+" if chg >= 0 else ""
-    
-    if isinstance(row, dict):
-        last_price = row.get("last_price", 0)
-        high = row.get("high", 0)
-        low = row.get("low", 0)
-        volume = row.get("volume", 0)
+        last_price = row.get("last_price", 0) or 0
+        chg = row.get("change_24_hour", 0) or 0
+        high = row.get("high", 0) or 0
+        low = row.get("low", 0) or 0
+        volume = row.get("volume", 0) or 0
     else:
         last_price = float(row.get("last_price", 0) or 0)
+        chg = float(row.get("change_24_hour", 0) or 0)
         high = float(row.get("high", 0) or 0)
         low = float(row.get("low", 0) or 0)
         volume = float(row.get("volume", 0) or 0)
+    
+    cls = "positive" if chg >= 0 else "negative"
+    sign = "+" if chg >= 0 else ""
     
     cols = st.columns(6)
     metrics = [
